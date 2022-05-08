@@ -81,6 +81,10 @@ iptables -A INPUT -p tcp --dport 25 -j DROP
 ## Changelog
 ---
 
+### v1.1.0 | 2022-05-08
+
+- Automatic cleaning of amount values. 
+
 ### v1.0.6 | 2022-05-08
 
 - Improvements

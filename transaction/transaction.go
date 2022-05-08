@@ -86,27 +86,29 @@ func ParseTransaction(text string, template *TransactionTemplate) (*Transaction,
 	}
 
 	if err := getTransactionField(&transaction.VendorReferenceId, "vendorReferenceId", template.VendorReferenceIdPattern, true); err != nil {
-		return nil, parserError(template, err.Error())
+		return nil, err
 	}
 
 	if err := getTransactionField(&transaction.Amount, "amount", template.AmountPattern, true); err != nil {
-		return nil, parserError(template, "Missing amount value")
+		return nil, err
 	}
+	// remove non-digit chars
+	transaction.Amount = utils.ReplaceAll(transaction.Amount, `[^\d\.,]`, "")
 
 	if err := getTransactionField(&transaction.Date, "date", template.DatePattern, true); err != nil {
-		return nil, parserError(template, err.Error())
+		return nil, err
 	}
 
 	if err := getTransactionField(&transaction.TransactionReferenceId, "transactionReferenceId", template.TransactionReferenceIdPattern, false); err != nil {
-		return nil, parserError(template, err.Error())
+		return nil, err
 	}
 
 	if err := getTransactionField(&transaction.AccountNumber, "accountNumber", template.AccountNumberPattern, false); err != nil {
-		return nil, parserError(template, err.Error())
+		return nil, err
 	}
 
 	if err := getTransactionField(&transaction.Currency, "currency", template.CurrencyPattern, false); err != nil {
-		return nil, parserError(template, err.Error())
+		return nil, err
 	}
 
 	return transaction, nil
