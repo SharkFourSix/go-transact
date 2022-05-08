@@ -81,6 +81,10 @@ iptables -A INPUT -p tcp --dport 25 -j DROP
 ## Changelog
 ---
 
+### v1.1.1 | 2022-05-08
+
+- Fix typo in struct field in [config.go](config/config.go) 
+
 ### v1.1.0 | 2022-05-08
 
 - Automatic cleaning of amount values. 

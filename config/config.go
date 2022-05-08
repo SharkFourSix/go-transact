@@ -25,7 +25,7 @@ type Config struct {
 	}
 	Server struct {
 		Address         string   `yaml:"address"`
-		UserTls         bool     `yaml:"useTls"`
+		UseTls          bool     `yaml:"useTls"`
 		CertificateFile string   `yaml:"certFile"`
 		KeyFile         string   `yaml:"keyFile"`
 		KeyPassphrase   string   `yaml:"keyPassphrase"`

@@ -192,7 +192,7 @@ func main() {
 
 	mailServer = &mailing.MailServer{
 		Address:         config.GetConfiguration().Server.Address,
-		UseTLS:          config.GetConfiguration().Server.UserTls,
+		UseTLS:          config.GetConfiguration().Server.UseTls,
 		CertificateFile: config.GetConfiguration().Server.CertificateFile,
 		KeyFile:         config.GetConfiguration().Server.KeyFile,
 		KeyPassphrase:   config.GetConfiguration().Server.KeyPassphrase,
