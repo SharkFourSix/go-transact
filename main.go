@@ -120,7 +120,7 @@ func main() {
 		template := config.GetTemplateByEmail(from)
 
 		if template == nil {
-			log.Warnf("Sender %s did not match any template. Email will be stored in spam", from)
+			log.Warnf("sender %s did not match any template. Email will be stored in spam", from)
 			spam := mailing.SpamMail{
 				ID:        uuid.NewV4().String(),
 				Body:      data,
@@ -145,21 +145,21 @@ func main() {
 			Recipients: strings.Join(to, ","),
 		}
 
-		log.Debugf("Saving transaction email [server=%s, sender=%s]", ip.String(), from)
+		log.Debugf("saving transaction email [server=%s, sender=%s]", ip.String(), from)
 		if err := persistence.Save(&email); err != nil {
 			log.Errorf("failed to save mail from [server=%s, sender=%s] for template %s. %s",
 				from, ip.String(), template.TemplateName, err.Error())
 		}
 
-		log.Debugf("Parsing transaaction from %s using template %s.", from, template.TemplateName)
+		log.Debugf("parsing transaaction from %s using template %s.", from, template.TemplateName)
 		transaction, err := transaction.ParseTransaction(data, template)
 		if err != nil {
-			log.Errorf("failed to parse transaction. %v", err)
+			log.Errorf("failed to parse transaction. %s", err.Error())
 			return
 		}
 
 		if err := persistence.Save(transaction); err != nil {
-			log.Errorf("failed to save transaction. %v", err)
+			log.Errorf("failed to save transaction. %s", err.Error())
 		}
 
 		callback := messaging.NotificationData{
@@ -182,11 +182,11 @@ func main() {
 		}
 
 		if err := notificationLog.Post(config.GetConfiguration().Callback.ForwardToken, &callback); err != nil {
-			log.Errorf("failure posting notification for transaction from %s. %v", from, err)
+			log.Errorf("failure posting notification for transaction from %s. %s", from, err.Error())
 		}
 
 		if err := persistence.Save(&callback); err != nil {
-			log.Errorf("failure saving notification. %v. response was %s", err, notificationLog.StatusText)
+			log.Errorf("failure saving notification. %s. response was %s", err.Error(), notificationLog.StatusText)
 		}
 	}
 
@@ -207,7 +207,7 @@ func main() {
 		defer func() {
 			log.Info("shutting down daemon...")
 			if err := mailServer.Shutdown(context.Background()); err != nil {
-				log.Errorf("Error during server shutdown %v", err)
+				log.Errorf("error during server shutdown %s", err.Error())
 			}
 		}()
 		if err := mailServer.Start(); err != nil {

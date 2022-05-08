@@ -6,4 +6,4 @@ builds:
 
 archives:
 - files:
-  - templates.ini
+  - config.yaml
