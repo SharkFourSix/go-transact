@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Generate PDF
-        uses: baileyjm02/markdown-to-pdf@v1
+      - name: Publish PDF Document
+        uses: shrink/actions-document-publish@v1
+        id: publish-document
         with:
-          input_dir: README.md
-          output_dir: README.pdf
-          build_html: false
+          sources: 'README.md'
+      - run: mv ${{ steps.publish-document.outputs.pdf }} README.pdf
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
