@@ -81,6 +81,10 @@ iptables -A INPUT -p tcp --dport 25 -j DROP
 ## Changelog
 ---
 
+### v1.0.5 | 2022-05-08
+
+- Improvements
+
 ### v1.0.4 | 2022-05-08
 
 - Workflow improvements

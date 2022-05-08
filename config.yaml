@@ -4,7 +4,7 @@ log:
   json: true # Log using json format
 server:
   address: ":25" # address and port to bind the smtp daemon to
-  useTls: true # Use TLS. Must specify certificate + key
+  useTls: false # Use TLS. Must specify certificate + key if true
   certFile: # path to certificate file
   keyFile: # path to key file
   keyPassphrase: # Passphrase if key is encrypted (openssl rand -hex 24).
@@ -15,7 +15,7 @@ server:
 callback:
   url:
   token:
-templates:
+templates: # Add as needed
   - name: National Bank Of Malawi
     email: mo626alerts@natbankmw.com
     datePattern: "on (?P<date>[0-9]{8})"

@@ -19,7 +19,7 @@ jobs:
         id: publish-document
         with:
           sources: 'README.md'
-      - run: mv ${{ steps.publish-document.outputs.pdf }} README.pdf
+      - run: mv ${{ steps.publish-document.outputs.pdf }} ./README.pdf
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
