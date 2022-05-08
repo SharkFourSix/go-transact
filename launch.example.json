@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "envFile": "${workspaceFolder}/.env",
+            "args": [
+                "--config-file",
+                "config.dev.yaml"
+            ],
+            "debugAdapter": "dlv-dap",
+            "substitutePath": [
+                {
+                    "from": "If using symlinks, place the link path here",
+                    "to": "and the physical path here"
+                }
+            ]
+        }
+    ]
+}

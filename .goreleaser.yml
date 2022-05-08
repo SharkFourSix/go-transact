@@ -1,0 +1,9 @@
+builds:
+  - goos:
+      - linux
+      - darwin
+      - windows
+
+archives:
+- files:
+  - templates.ini

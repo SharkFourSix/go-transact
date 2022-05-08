@@ -1,0 +1,26 @@
+log:
+  level: warn # trace, debug, info, warn, error, fatal, panic. Default = warn
+  file: go-transact.log # Leave empty to log to console
+  json: true # Log using json format
+server:
+  address: ":25" # address and port to bind the smtp daemon to
+  useTls: true # Use TLS. Must specify certificate + key
+  certFile: # path to certificate file
+  keyFile: # path to key file
+  keyPassphrase: # Passphrase if key is encrypted (openssl rand -hex 24).
+  # Recommended to create unique generated mailbox names.
+  # These will be checked upon email receipt and the email will be rejected if they don't match.
+  mailboxes:
+    -
+callback:
+  url:
+  token:
+templates:
+  - name: National Bank Of Malawi
+    email: mo626alerts@natbankmw.com
+    datePattern: "on (?P<date>[0-9]{8})"
+    amountPattern: "(?P<amount>[0-9,.]{3,18}) on "
+    currencyPattern: "with (?P<currency>[A-Z]{3})"
+    accountNumberPattern: "account number (?P<accountNumber>[0-9]+)"
+    vendorReferenceIdPattern: 'Description: (?P<vendorReferenceId>[0-9A-Za-z]{1,255})\.$'
+    transactionReferenceIdPattern: 'Reference: (?P<transactionReferenceId>FT[0-9A-Z]+\\BNK)\.$'
