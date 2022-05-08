@@ -1,8 +1,11 @@
+permissions:
+  contents: write
+
 name: Build binaries
 on:
   push:
     tags:
-      - 'v**'
+      - "v**"
 jobs:
   goreleaser:
     runs-on: ubuntu-latest

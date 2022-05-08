@@ -81,6 +81,10 @@ iptables -A INPUT -p tcp --dport 25 -j DROP
 ## Changelog
 ---
 
+### v1.0.2 | 2022-05-08
+
+- Fix workflow write permissions
+
 ### v1.0.1 | 2022-05-08
 
 - Small improvements
