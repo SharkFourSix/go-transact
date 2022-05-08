@@ -7,3 +7,4 @@ builds:
 archives:
 - files:
   - config.yaml
+  - README.PDF
